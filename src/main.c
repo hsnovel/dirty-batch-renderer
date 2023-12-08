@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <glad/glad.h>
+
 #include <GLFW/glfw3.h>
+#include <GLFW/glfw3native.h>
 
 #include <windows.h>
 
@@ -54,7 +56,6 @@ struct file read_file(char *path) {
 
 	return result;
 }
-
 
 // =======================
 // Shaders
