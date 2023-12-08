@@ -3,13 +3,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <windows.h>
+
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 	glViewport(0, 0, width, height);
 }
 
 void process_input(GLFWwindow *window) {
 	if ( glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS ) {
-		glfwSetWindowShouldClose(window, true);
+		glfwSetWindowShouldClose(window, 1);
 	}
 }
 
@@ -115,7 +117,8 @@ float verticies[] = {
 	0.0f, 0.5f, 0.0f,
 };
 
-int main() {
+int WINAPI WinMain(HINSTANCE instance, HINSTANCE previnstance, LPSTR cmdline, int cmdshow)
+{
 	GLFWwindow *window;
 	int shader_program;
 	unsigned int VAO, VBO;
