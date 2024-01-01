@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 
 project(template C)
 
-add_compile_options(/Od)
+add_compile_options(-g3)
 
 add_executable(${PROJECT_NAME} WIN32 src/main.c src/glad.c)
 
