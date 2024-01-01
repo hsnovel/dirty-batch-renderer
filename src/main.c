@@ -120,14 +120,20 @@ int compile_link_shaders() {
 	return shader_program;
 }
 
-void handle_window_resize(smat4 *proj)
+void handle_window_resize(smat4 *model)
 {
 	if (window_resized == 1)
 		window_resized = 0;
 	else
 		return;
 
-	*proj = s_mat4_ortho_rh(0.0f, window_width, 0.0f, window_height, 0.0f, 100.0f);
+	float aspect_ratio = (float)window_width / (float)window_height;
+
+	*model = s_mat4_identity();
+	if ( aspect_ratio > 1 )
+		*model = s_mat4_scale(*model, SVEC3(1 / aspect_ratio, 1.0f, 1.0f));
+	else
+		*model = s_mat4_scale(*model, SVEC3(1, aspect_ratio, 1.0f));
 }
 
 /* float verticies[] = { */
@@ -290,7 +296,7 @@ int main(int argc, char **argv)
 
 	while ( !glfwWindowShouldClose(window) ) {
 		process_input(window);
-		handle_window_resize(&proj);
+		handle_window_resize(&model);
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
